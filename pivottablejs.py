@@ -11,11 +11,11 @@ template = """
 
         <!-- external libs from cdnjs -->
         <link rel="stylesheet" type="text/css" href="%(static)s/ajax/c3.min.css">
-        <script type="text/javascript" src="%(static)s/ajax/jquery.min.js"></script>
-        <script type="text/javascript" src="%(static)s/ajax/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="%(static)s/ajax/libs/d3/3.5.5/d3.min.js"></script>
-        <script type="text/javascript" src="%(static)s/ajax/jquery.csv-0.71.min.js"></script>
-        <script type="text/javascript" src="%(static)s/ajax/c3.min.js"></script>
+        <script type="text/javascript" src="%(static)s/pivot-ajax/jquery.min.js"></script>
+        <script type="text/javascript" src="%(static)s/pivot-ajax/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="%(static)s/pivot-ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="%(static)s/pivot-ajax/jquery.csv-0.71.min.js"></script>
+        <script type="text/javascript" src="%(static)s/pivot-ajax/c3.min.js"></script>
 
         <link rel="stylesheet" type="text/css" href="%(static)s/pivottable/pivot.min.css">
         <script type="text/javascript" src="%(static)s/pivottable/pivot.min.js"></script>
