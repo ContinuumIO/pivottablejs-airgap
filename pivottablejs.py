@@ -10,10 +10,10 @@ template = """
         <title>PivotTable.js</title>
 
         <!-- external libs from cdnjs -->
-        <link rel="stylesheet" type="text/css" href="%(static)s/ajax/c3.min.css">
+        <link rel="stylesheet" type="text/css" href="%(static)s/pivot-ajax/c3.min.css">
         <script type="text/javascript" src="%(static)s/pivot-ajax/jquery.min.js"></script>
         <script type="text/javascript" src="%(static)s/pivot-ajax/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="%(static)s/pivot-ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="%(static)s/pivot-ajax/d3.min.js"></script>
         <script type="text/javascript" src="%(static)s/pivot-ajax/jquery.csv-0.71.min.js"></script>
         <script type="text/javascript" src="%(static)s/pivot-ajax/c3.min.js"></script>
 
