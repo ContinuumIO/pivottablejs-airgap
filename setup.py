@@ -53,5 +53,4 @@ setup(
     keywords='pivot table grid pivottable pivotgrid pivotchart crosstab',
 
     py_modules=["pivottablejs"]
-
 )

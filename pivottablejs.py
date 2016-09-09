@@ -67,13 +67,12 @@ template = """
 </html>
 """
 
-import sys
 from IPython.display import IFrame
 
 def pivot_ui(df, outfile_path = "pivottablejs.html", width="100%", height="500"):
-    c = get_config()
-    print(c.NotebookApp.port)
-    static_path = 'http://localhost:%s' % c.NotebookApp.port
+    # FIXME: we shouldn't hard-code the port here
+    port = 8888 # get_config().NotebookApp.port
+    static_path = 'http://localhost:%s' % port
     with open(outfile_path, 'w') as outfile:
         outfile.write(template % {'div': df.to_csv(),
                                   'static': '%s/static' % static_path})
