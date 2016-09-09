@@ -71,8 +71,11 @@ import sys
 from IPython.display import IFrame
 
 def pivot_ui(df, outfile_path = "pivottablejs.html", width="100%", height="500"):
+    c = get_config()
+    print(c.NotebookApp.port)
+    static_path = 'http://localhost:%s' % c.NotebookApp.port
     with open(outfile_path, 'w') as outfile:
         outfile.write(template % {'div': df.to_csv(),
-                                  'static': 'file://%s/static' % sys.prefix})
+                                  'static': '%s/static' % static_path})
     return IFrame(src=outfile_path, width=width, height=height)
 
