@@ -14,7 +14,7 @@ template = """
         <script type="text/javascript" src="%(static)s/ajax/jquery.min.js"></script>
         <script type="text/javascript" src="%(static)s/ajax/jquery-ui.min.js"></script>
         <script type="text/javascript" src="%(static)s/ajax/libs/d3/3.5.5/d3.min.js"></script>
-        <script type="text/javascript" src="%(static)s/ajax/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+        <script type="text/javascript" src="%(static)s/ajax/jquery.csv-0.71.min.js"></script>
         <script type="text/javascript" src="%(static)s/ajax/c3.min.js"></script>
 
         <link rel="stylesheet" type="text/css" href="%(static)s/pivottable/pivot.min.css">
@@ -78,4 +78,3 @@ def pivot_ui(df, outfile_path = "pivottablejs.html", width="100%", height="500")
         outfile.write(template % {'div': df.to_csv(),
                                   'static': '%s/static' % static_path})
     return IFrame(src=outfile_path, width=width, height=height)
-
