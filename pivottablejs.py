@@ -2,6 +2,8 @@
 # %load_ext pivottablejs
 # %pivottablejs data_frame
 
+__version__ = '2.7.0'
+
 
 template = """
 <!DOCTYPE html>
