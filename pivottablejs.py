@@ -8,22 +8,52 @@ __version__ = '2.7.0'
 template = """
 <!DOCTYPE html>
 <html>
-    <head>
+    <head id="head-pivottable">
         <title>PivotTable.js</title>
 
         <!-- external libs from cdnjs -->
-        <link rel="stylesheet" type="text/css" href="%(static)s/pivot-ajax/c3.min.css">
-        <script type="text/javascript" src="%(static)s/pivot-ajax/jquery.min.js"></script>
-        <script type="text/javascript" src="%(static)s/pivot-ajax/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="%(static)s/pivot-ajax/d3.min.js"></script>
-        <script type="text/javascript" src="%(static)s/pivot-ajax/jquery.csv-0.71.min.js"></script>
-        <script type="text/javascript" src="%(static)s/pivot-ajax/c3.min.js"></script>
+        <script type="text/javascript">
+        var static_url = window.location.href.split('/');
+        static_url = static_url.slice(0,6);  // keep up to app 'notebook'
+        var staticjs = static_url.join('/');
 
-        <link rel="stylesheet" type="text/css" href="%(static)s/pivottable/pivot.min.css">
-        <script type="text/javascript" src="%(static)s/pivottable/pivot.min.js"></script>
-        <script type="text/javascript" src="%(static)s/pivottable/d3_renderers.min.js"></script>
-        <script type="text/javascript" src="%(static)s/pivottable/c3_renderers.min.js"></script>
-        <script type="text/javascript" src="%(static)s/pivottable/export_renderers.min.js"></script>
+        var head = document.getElementById('head-pivottable'); // append the scripts to the iframe head
+        css_scripts = ["pivot-ajax/c3.min.css", "pivottable/pivot.min.css"];
+        for (i = 0; i < css_scripts.length; i++) {
+            var link = document.createElement('link');
+            link.setAttribute('type', 'text/css');
+            link.setAttribute('rel', 'stylesheet');
+            var ref = staticjs + '/nbextensions/' + css_scripts[i];
+            link.setAttribute('href', ref);
+            head.appendChild(link);
+        }
+        js_scripts = [
+                "pivot-ajax/jquery.min.js",    // load jquery first
+                "pivot-ajax/jquery-ui.min.js",
+                "pivot-ajax/jquery.csv-0.71.min.js",
+                "pivot-ajax/d3.min.js",
+                "pivot-ajax/c3.min.js",
+                "pivottable/pivot.min.js",
+                "pivottable/d3_renderers.min.js",
+                "pivottable/c3_renderers.min.js",
+                "pivottable/export_renderers.min.js"]
+
+        function loadScript() {
+            if (js_scripts.length == 0) {
+                userFunction();
+                return;
+            }
+            var static_file = js_scripts.shift()
+            var script = document.createElement('script');
+            script.setAttribute('type', 'text/javascript');
+            var source = staticjs + '/nbextensions/' + static_file; //js_scripts.shift();  //[i];
+            script.setAttribute('src', source);
+            script.onload = function() {
+                loadScript();  // load the scripts synchronously
+            }
+            head.appendChild(script);
+        }
+        loadScript();
 
         <style>
             body {font-family: Verdana;}
@@ -45,6 +75,7 @@ template = """
     </head>
     <body>
         <script type="text/javascript">
+        function userFunction() {
             $(function(){
                 if(window.location != window.parent.location)
                     $("<a>", {target:"_blank", href:""})
@@ -63,6 +94,7 @@ template = """
                     }
                 ).show();
              });
+        }
         </script>
         <div id="output" style="display: none;">%(div)s</div>
     </body>
@@ -72,10 +104,6 @@ template = """
 from IPython.display import IFrame
 
 def pivot_ui(df, outfile_path = "pivottablejs.html", width="100%", height="500"):
-    # FIXME: we shouldn't hard-code the port here
-    port = 8888 # get_config().NotebookApp.port
-    static_path = 'http://localhost:%s' % port
     with open(outfile_path, 'w') as outfile:
-        outfile.write(template % {'div': df.to_csv(),
-                                  'static': '%s/static' % static_path})
+        outfile.write(template % {'div': df.to_csv()})
     return IFrame(src=outfile_path, width=width, height=height)
