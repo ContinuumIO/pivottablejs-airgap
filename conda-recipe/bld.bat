@@ -1,11 +1,12 @@
 "%PYTHON%" setup.py install
 
-mkdir %SP_DIR%/notebook
-mkdir %SP_DIR%/notebook/static
+mkdir %PREFIX%/share
+mkdir %PREFIX%/share/jupyter
+mkdir %PREFIX%/share/jupyter/nbextensions
 if errorlevel 1 exit 1
 
-move static/pivot-ajax %SP_DIR%/notebook/static
+move static/pivot-ajax %PREFIX%/share/jupyter/nbextensions/
 if errorlevel 1 exit 1
 
-move static/pivottable %SP_DIR%/notebook/static
+move static/pivottable %PREFIX%/share/jupyter/nbextensions/
 if errorlevel 1 exit 1

@@ -39,6 +39,7 @@ template = """
                 "pivottable/export_renderers.min.js"]
 
         function loadScript() {
+            // the js array will be shift until empty
             if (js_scripts.length == 0) {
                 userFunction();
                 return;
@@ -54,7 +55,7 @@ template = """
             head.appendChild(script);
         }
         loadScript();
-
+        </script>
         <style>
             body {font-family: Verdana;}
             .node {
