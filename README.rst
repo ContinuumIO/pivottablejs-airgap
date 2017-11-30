@@ -1,13 +1,10 @@
-``pivottablejs``: the Python module
-===================================
+``pivottablejs``: the airgapped version
+=======================================
+
+This is an air-gapped version for ``pivottablejs``
 
 Drag’n’drop Pivot Tables and Charts for `Jupyter/IPython Notebook`_,
 care of `PivotTable.js`_
-
-Installation
-------------
-
-``pip install pivottablejs``
 
 Usage
 -----
