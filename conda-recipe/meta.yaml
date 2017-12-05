@@ -4,7 +4,7 @@ package:
 
 source:
   git_url: https://github.com/ContinuumIO/pivottablejs-airgap.git
-  git_rev: 14bf7d29b2478a76094ebef396b832acc7f08b70
+  git_rev: fix/load-statics-for-pivottable
 
 requirements:
   build:
